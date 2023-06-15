@@ -1,5 +1,4 @@
 __pycache__/
-misc/
 web/source_images/*
 web/images/*
 web/*.log
@@ -11,5 +10,6 @@ demohub/demohub/object_detection/mmdetection/checkpoints/*
 demohub/demohub/segmentation/mmsegmentation/checkpoints/*
 demohub/demohub/diffusion/stable-diffusion/assets/*
 *.ckpt
+*.pth
 segment_anything_source/*
 !.gitkeep

@@ -8,10 +8,10 @@
     "conda_env": "ldm",
     "name": {
         "en": "Image To Image",
-        "cn": "图像生成图像"
+        "cn": "Image To Image"
     },
-    "input_image_name": "demo.png",
-    "output_image_name": "demo.png",
+    "input_image_name": "../../../../web/images/cat.jpg",
+    "output_image_name": "demo.jpg",
     "show_images": [
         "../../../../web/images/demo.jpg",
         "../../../../web/images/airplane.jpg",
@@ -21,6 +21,6 @@
         "../../../../web/images/deer.jpg"
     ],
     "likes": 4,
-    "pageviews": 478,
+    "pageviews": 479,
     "author": "DemoHub"
 }
