@@ -1,0 +1,38 @@
+{
+    "args": {
+        "threshold1": {
+            "type": "int",
+            "values": [
+                0,
+                9999
+            ],
+            "default": 100
+        },
+        "threshold2": {
+            "type": "int",
+            "values": [
+                0,
+                9999
+            ],
+            "default": 200
+        }
+    },
+    "likes": 6,
+    "pageviews": 235,
+    "author": "DemoHub",
+    "conda_env": "demohub.cv2",
+    "name": {
+        "en": "Canny",
+        "cn": "Canny"
+    },
+    "input_image_name": "../demo.jpg",
+    "output_image_name": "demo_res.jpg",
+    "show_images": [
+        "../../../../web/images/demo.jpg",
+        "../../../../web/images/airplane.jpg",
+        "../../../../web/images/bird.jpg",
+        "../../../../web/images/cat.jpg",
+        "../../../../web/images/chair.jpg",
+        "../../../../web/images/deer.jpg"
+    ]
+}

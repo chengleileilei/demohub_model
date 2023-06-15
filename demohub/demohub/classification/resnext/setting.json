@@ -1,0 +1,20 @@
+{
+    "likes": 13,
+    "pageviews": 73,
+    "author": "DemoHub",
+    "conda_env": "classification",
+    "name": {
+        "en": "ResNeXt",
+        "cn": "ResNeXt"
+    },
+    "input_image_name": "../demo.jpg",
+    "output_image_name": "../demo.jpg",
+    "show_images": [
+        "../../../../web/images/owl.jpg",
+        "../demo.jpg",
+        "../../../../web/images/bird.jpg",
+        "../../../../web/images/cat.jpg",
+        "../../../../web/images/chair.jpg",
+        "../../../../web/images/deer.jpg"
+    ]
+}

@@ -1,0 +1,15 @@
+__pycache__/
+misc/
+web/source_images/*
+web/images/*
+web/*.log
+web/cert/
+!web/cert/*.sh
+demohub/docs/
+demohub/utils/
+demohub/demohub/object_detection/mmdetection/checkpoints/*
+demohub/demohub/segmentation/mmsegmentation/checkpoints/*
+demohub/demohub/diffusion/stable-diffusion/*
+*.ckpt
+segment_anything_source/*
+!.gitkeep
