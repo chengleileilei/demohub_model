@@ -18,6 +18,17 @@ import numpy as np
 import argparse
 import json
 from typing import Any, Dict, List
+import torch
+
+
+utils_path = os.path.abspath(os.path.join(root_dir,'../'*4))
+utils_path = os.path.join(utils_path,'web')
+sys.path.append(utils_path)
+from utils import choose_gpu
+import torch
+
+cuda_n = choose_gpu()
+torch.cuda.set_device(int(cuda_n))
 
 
 
