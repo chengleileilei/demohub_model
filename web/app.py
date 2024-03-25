@@ -183,13 +183,13 @@ def submit():
     # conda_env = p["conda_env"]
     # print(demoparams_str)
     res = models.run_model(classname,demoname,image_path,demoparams_str,conda_env)
-    # print("kkkkres:",res)
+    print("return res:::",res)
     res = jsonify(res)
     return res
 
-@app.route('/verification.html',methods=['GET','POST'])
+@app.route('/.well-known/pki-validation/fileauth.txt',methods=['GET','POST'])
 def verfi():
-    return render_template('dist/verification.html') 
+    return render_template('dist/fileauth.txt') 
 
 @app.route('/watermark/embed',methods=['GET','POST'])
 def embed():
@@ -216,7 +216,7 @@ def extract():
     conda_env = p['conda_env']
     print(p)
     res = models.run_watermark_extract(classname,demoname,image_path,demoparams,conda_env)
-    print(res)
+    print("return res:::",res)
     return jsonify(res)
 
 if __name__ == "__main__":

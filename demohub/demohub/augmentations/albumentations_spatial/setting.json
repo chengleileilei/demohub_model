@@ -47,20 +47,6 @@
             },
             "doc": "Augmentation to apply affine transformations to images.\n    This is mostly a wrapper around the corresponding classes and functions in OpenCV.\n\n    Affine transformations involve:\n\n        - Translation (\"move\" image on the x-/y-axis)\n        - Rotation\n        - Scaling (\"zoom\" in/out)\n        - Shear (move one side of the image, turning a square into a trapezoid)\n\n    All such transformations can create \"new\" pixels in the image without a defined content, e.g.\n    if the image is translated to the left, pixels are created on the right.\n    A method has to be defined to deal with these pixel values.\n    The parameters `cval` and `mode` of this class deal with this.\n\n    Some transformations involve interpolations between several pixels\n    of the input image to generate output pixel values. The parameters `interpolation` and\n    `mask_interpolation` deals with the method of interpolation used for this.\n\n    Args:\n        scale (number, tuple of number or dict): Scaling factor to use, where ``1.0`` denotes \"no change\" and\n            ``0.5`` is zoomed out to ``50`` percent of the original size.\n                * If a single number, then that value will be used for all images.\n                * If a tuple ``(a, b)``, then a value will be uniformly sampled per image from the interval ``[a, b]``.\n                  That the same range will be used for both x- and y-axis. To keep the aspect ratio, set\n                  ``keep_ratio=True``, then the same value will be used for both x- and y-axis.\n                * If a dictionary, then it is expected to have the keys ``x`` and/or ``y``.\n                  Each of these keys can have the same values as described above.\n                  Using a dictionary allows to set different values for the two axis and sampling will then happen\n                  *independently* per axis, resulting in samples that differ between the axes. Note that when\n                  the ``keep_ratio=True``, the x- and y-axis ranges should be the same.\n        translate_percent (None, number, tuple of number or dict): Translation as a fraction of the image height/width\n            (x-translation, y-translation), where ``0`` denotes \"no change\"\n            and ``0.5`` denotes \"half of the axis size\".\n                * If ``None`` then equivalent to ``0.0`` unless `translate_px` has a value other than ``None``.\n                * If a single number, then that value will be used for all images.\n                * If a tuple ``(a, b)``, then a value will be uniformly sampled per image from the interval ``[a, b]``.\n                  That sampled fraction value will be used identically for both x- and y-axis.\n                * If a dictionary, then it is expected to have the keys ``x`` and/or ``y``.\n                  Each of these keys can have the same values as described above.\n                  Using a dictionary allows to set different values for the two axis and sampling will then happen\n                  *independently* per axis, resulting in samples that differ between the axes.\n        translate_px (None, int, tuple of int or dict): Translation in pixels.\n                * If ``None`` then equivalent to ``0`` unless `translate_percent` has a value other than ``None``.\n                * If a single int, then that value will be used for all images.\n                * If a tuple ``(a, b)``, then a value will be uniformly sampled per image from\n                  the discrete interval ``[a..b]``. That number will be used identically for both x- and y-axis.\n                * If a dictionary, then it is expected to have the keys ``x`` and/or ``y``.\n                  Each of these keys can have the same values as described above.\n                  Using a dictionary allows to set different values for the two axis and sampling will then happen\n                  *independently* per axis, resulting in samples that differ between the axes.\n        rotate (number or tuple of number): Rotation in degrees (**NOT** radians), i.e. expected value range is\n            around ``[-360, 360]``. Rotation happens around the *center* of the image,\n            not the top left corner as in some other frameworks.\n                * If a number, then that value will be used for all images.\n                * If a tuple ``(a, b)``, then a value will be uniformly sampled per image from the interval ``[a, b]``\n                  and used as the rotation value.\n        shear (number, tuple of number or dict): Shear in degrees (**NOT** radians), i.e. expected value range is\n            around ``[-360, 360]``, with reasonable values being in the range of ``[-45, 45]``.\n                * If a number, then that value will be used for all images as\n                  the shear on the x-axis (no shear on the y-axis will be done).\n                * If a tuple ``(a, b)``, then two value will be uniformly sampled per image\n                  from the interval ``[a, b]`` and be used as the x- and y-shear value.\n                * If a dictionary, then it is expected to have the keys ``x`` and/or ``y``.\n                  Each of these keys can have the same values as described above.\n                  Using a dictionary allows to set different values for the two axis and sampling will then happen\n                  *independently* per axis, resulting in samples that differ between the axes.\n        interpolation (int): OpenCV interpolation flag.\n        mask_interpolation (int): OpenCV interpolation flag.\n        cval (number or sequence of number): The constant value to use when filling in newly created pixels.\n            (E.g. translating by 1px to the right will create a new 1px-wide column of pixels\n            on the left of the image).\n            The value is only used when `mode=constant`. The expected value range is ``[0, 255]`` for ``uint8`` images.\n        cval_mask (number or tuple of number): Same as cval but only for masks.\n        mode (int): OpenCV border flag.\n        fit_output (bool): If True, the image plane size and position will be adjusted to tightly capture\n            the whole image after affine transformation (`translate_percent` and `translate_px` are ignored).\n            Otherwise (``False``),  parts of the transformed image may end up outside the image plane.\n            Fitting the output shape can be useful to avoid corners of the image being outside the image plane\n            after applying rotations. Default: False\n        keep_ratio (bool): When True, the original aspect ratio will be kept when the random scale is applied.\n                           Default: False.\n        p (float): probability of applying the transform. Default: 0.5.\n\n    Targets:\n        image, mask, keypoints, bboxes\n\n    Image types:\n        uint8, float32\n\n    "
         },
-        "BBoxSafeRandomCrop": {
-            "args": {
-                "erosion_rate": {
-                    "default": "0.0"
-                },
-                "always_apply": {
-                    "default": "False"
-                },
-                "p": {
-                    "default": "1.0"
-                }
-            },
-            "doc": "Crop a random part of the input without loss of bboxes.\n    Args:\n        erosion_rate (float): erosion rate applied on input image height before crop.\n        p (float): probability of applying the transform. Default: 1.\n    Targets:\n        image, mask, bboxes\n    Image types:\n        uint8, float32\n    "
-        },
         "CenterCrop": {
             "args": {
                 "height": {
@@ -369,26 +355,6 @@
                 }
             },
             "doc": "Rescale an image so that maximum side is equal to max_size, keeping the aspect ratio of the initial image.\n\n    Args:\n        max_size (int, list of int): maximum size of the image after the transformation. When using a list, max size\n            will be randomly selected from the values in the list.\n        interpolation (OpenCV flag): interpolation method. Default: cv2.INTER_LINEAR.\n        p (float): probability of applying the transform. Default: 1.\n\n    Targets:\n        image, mask, bboxes, keypoints\n\n    Image types:\n        uint8, float32\n    "
-        },
-        "MaskDropout": {
-            "args": {
-                "max_objects": {
-                    "default": "1"
-                },
-                "image_fill_value": {
-                    "default": "0"
-                },
-                "mask_fill_value": {
-                    "default": "0"
-                },
-                "always_apply": {
-                    "default": "False"
-                },
-                "p": {
-                    "default": "0.5"
-                }
-            },
-            "doc": "\n    Image & mask augmentation that zero out mask and image regions corresponding\n    to randomly chosen object instance from mask.\n\n    Mask must be single-channel image, zero values treated as background.\n    Image can be any number of channels.\n\n    Inspired by https://www.kaggle.com/c/severstal-steel-defect-detection/discussion/114254\n\n    Args:\n        max_objects: Maximum number of labels that can be zeroed out. Can be tuple, in this case it's [min, max]\n        image_fill_value: Fill value to use when filling image.\n            Can be 'inpaint' to apply inpaining (works only  for 3-chahnel images)\n        mask_fill_value: Fill value to use when filling mask.\n\n    Targets:\n        image, mask\n\n    Image types:\n        uint8, float32\n    "
         },
         "NoOp": {
             "args": {
@@ -887,6 +853,7 @@
     "input_image_name": "../demo.jpg",
     "output_image_name": "demoout.jpg",
     "show_images": [
+        "../../../../web/images/dog.jpg",
         "../../../../web/images/demo.jpg",
         "../../../../web/images/airplane.jpg",
         "../../../../web/images/bird.jpg",
@@ -894,7 +861,7 @@
         "../../../../web/images/chair.jpg",
         "../../../../web/images/deer.jpg"
     ],
-    "likes": 4,
-    "pageviews": 197,
+    "likes": 7,
+    "pageviews": 283,
     "author": "DemoHub"
 }

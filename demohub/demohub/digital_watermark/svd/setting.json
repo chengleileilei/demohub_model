@@ -5,8 +5,8 @@
     },
     "input_image_name": "../../../../web/images/building.jpg",
     "output_image_name": "../watermark_white_black/test3.jpg",
-    "likes": 1,
-    "pageviews": 189,
+    "likes": 2,
+    "pageviews": 213,
     "author": "DemoHub",
     "conda_env": "digital_watermark",
     "show_images": [

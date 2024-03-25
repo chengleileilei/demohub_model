@@ -52,7 +52,8 @@ def main():
         osp.dirname(args.image_path), 
         osp.basename(args.image_path)+'.albumentations.{}.jpg'.format(args.funName).replace(' ',''))
     save_image(transformed_image,output_path)
-    print("output_path is {}".format(output_path))
+    print(output_path)
+    # print("output_path is {}".format(output_path))
 
 
 if __name__ == "__main__":

@@ -51,7 +51,8 @@ def main():
     output_path = osp.join(
         osp.dirname(args.image_path), 
         osp.basename(args.image_path)+'.eh.{}.jpg'.format(args.space))
-    print("output_path is {}".format(output_path))
+    print(output_path)
+    # print("output_path is {}".format(output_path))
     save_image(image, output_path)
 
 if __name__ == "__main__":

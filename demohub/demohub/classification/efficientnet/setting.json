@@ -1,6 +1,6 @@
 {
-    "likes": 15,
-    "pageviews": 165,
+    "likes": 20,
+    "pageviews": 319,
     "author": "DemoHub",
     "conda_env": "classification",
     "name": {
@@ -15,6 +15,6 @@
         "../../../../web/images/bird.jpg",
         "../../../../web/images/cat.jpg",
         "../../../../web/images/chair.jpg",
-        "../../../../web/images/deer.jpg"
+        "../../../../web/images/building.jpg"
     ]
 }

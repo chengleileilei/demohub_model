@@ -6,8 +6,8 @@
     },
     "input_image_name": "../demo.jpg",
     "output_image_name": "./demo_res.jpg",
-    "likes": 4,
-    "pageviews": 88,
+    "likes": 17,
+    "pageviews": 192,
     "show_images": [
         "../../../../web/images/street.jpg",
         "../../../../web/images/cars.jpg",

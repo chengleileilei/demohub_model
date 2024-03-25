@@ -1,7 +1,7 @@
 {
     "name": {
-        "en": "STABLE DIFFUSION",
-        "cn": "STABLE DIFFUSION"
+        "en": "IMAGE GENERATION",
+        "cn": "图像生成"
     },
     "priority":8
 }

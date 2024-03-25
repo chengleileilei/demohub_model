@@ -18,7 +18,7 @@
         }
     },
     "likes": 6,
-    "pageviews": 235,
+    "pageviews": 254,
     "author": "DemoHub",
     "conda_env": "demohub.cv2",
     "name": {
@@ -33,6 +33,6 @@
         "../../../../web/images/bird.jpg",
         "../../../../web/images/cat.jpg",
         "../../../../web/images/chair.jpg",
-        "../../../../web/images/deer.jpg"
+        "../../../../web/images/dog.jpg"
     ]
 }
