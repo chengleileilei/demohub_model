@@ -7,9 +7,6 @@ import os,random,string
 import json
 from flask_cors import CORS
 from werkzeug.middleware.proxy_fix import ProxyFix
-import re
-from flask import abort
-
 
 import utils
 
@@ -45,13 +42,8 @@ def getIndexe():
 @app.route("/absimage", methods=['post', 'get'])
 def getAbsImage():
     path = request.args.get('path')
-    # print(path[:13])
-    # 安全检查：
-    if path[:13] != '/root/demohub' or ' ' in path or '|' in path or '..' in path or '\\' in path :
-        abort(400, 'Bad Request: Input contains invalid characters')
     resp = Response(open(path, 'rb'), mimetype="image/jpeg")
     return resp
-
 
 @app.route("/image", methods=['post', 'get'])
 def getImage():
@@ -175,7 +167,7 @@ def uploadimage():
     #这个是图片的访问路径，需返回前端（可有可无）
     return file_path 
 
-@app.route('/submit',methods=['POST'])
+@app.route('/submit',methods=['GET','POST'])
 def submit():
     p = request.json
     classname = p['classname']
@@ -184,20 +176,8 @@ def submit():
     image_path = p["local_image_url"]
     conda_env = p['conda_env']
     # print("收到的原始参数：",demoparams)
-
-    # 安全校验
-    if not re.match(r'^[a-zA-Z0-9_]+$', classname) or not re.match(r'^[a-zA-Z0-9_]+$', demoname) or not re.match(r'^[a-zA-Z0-9_.]+$', conda_env):
-        print('case1')
-        abort(400, 'Bad Request: Input contains invalid characters')
-
-    if image_path[:13] != '/root/demohub' or ' ' in image_path or '|' in image_path or '..' in image_path or '\\' in image_path : 
-        print('case2')
-        abort(400, 'Bad Request: Input contains invalid characters')
-
     demoparams_str = ''
     for (arg_name,arg_value) in demoparams.items():
-        if not re.match(r'^[a-zA-Z0-9_]+$', arg_name) or not isinstance(arg_value, (str, int, float)):
-            abort(400, 'Bad Request: Invalid demoparams')
         demoparams_str += '--' +arg_name + ' \"' + str(arg_value) + '\" ' 
     demoparams_str.replace("(","\(").replace(")","\)")  # inux5.0之后，bash命令参数不能带有括号，需要转译
     # conda_env = p["conda_env"]
