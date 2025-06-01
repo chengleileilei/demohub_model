@@ -211,6 +211,7 @@ def submit():
 def verfi():
     return render_template('dist/fileauth.txt') 
 
+
 @app.route('/watermark/embed',methods=['GET','POST'])
 def embed():
     p = request.json
@@ -243,13 +244,15 @@ if __name__ == "__main__":
     # 初始化json数据（补充点赞，浏览，默认样例图片数据）
     initJsonData()
     # 在unix环境下，小于1024的端口不能被普通用户绑定
-    # ssl_keys = ('cert/demohub.bjtu.edu.cn.pem', 'cert/demohub.bjtu.edu.cn.key')
-    ssl_keys = ('cert/aliyun/9380646_demohub.bjtu.edu.cn.pem', 'cert/aliyun/9380646_demohub.bjtu.edu.cn.key')
+    # ssl_keys = ('cert/aliyun/9380646_demohub.bjtu.edu.cn.pem', 'cert/aliyun/9380646_demohub.bjtu.edu.cn.key')
+    ssl_keys = ('cert/freessl/full_chain.pem', 'cert/freessl/private.key')
+
 
     # app.run(debug='True',host='0.0.0.0', port=80)
 
     app.run(debug='True',host='0.0.0.0', port=443,ssl_context=ssl_keys)
+
     # app.wsgi_app = ProxyFix(app.wsgi_app)
-    # app.run(ssl_context=ssl_keys)   
+    # app.run(ssl_context=ssl_keys)
 
 

@@ -17,8 +17,8 @@
             "default": 200
         }
     },
-    "likes": 6,
-    "pageviews": 258,
+    "likes": 7,
+    "pageviews": 260,
     "author": "DemoHub",
     "conda_env": "demohub.cv2",
     "name": {

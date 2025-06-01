@@ -1,4 +1,0 @@
-total 12
-drwxr-xr-x 3 root root 4096 Jun  7  2023 .
-drwxrwxrwx 1 root root 4096 Jun  7  2023 ..
-drwxr-xr-x 3 root root 4096 Jun  7  2023 demohub_data

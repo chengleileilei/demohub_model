@@ -9,8 +9,8 @@
             "default": "rgb"
         }
     },
-    "likes": 5,
-    "pageviews": 225,
+    "likes": 7,
+    "pageviews": 232,
     "author": "DemoHub",
     "conda_env": "demohub.cv2",
     "name": {
